@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 16px;
+    background-color: white;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=date]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.registerbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+</style>
+</head>
+
+<link rel="stylesheet"
+        href="https://www.w3schools.com/w3css/4/w3.css">
+
+<body>
+
+<form action="{{ 'dev/' + url_for("income")}}" method="post">
+    <div class="w3-container">
+        <h2 class="w3-text-green w3-xxlarge">Add an Income</h2>
+        <hr>
+            <label for="date"><b>Date</b></label>
+            <input type="date" name="date" id="date" style="margin-right: 100px; padding: 10px;" required>
+
+            <label for="amt"><b>Amount</b></label>
+            <input type="number" placeholder="Enter Amount" name="amt" id="amt" style="padding: 10px;" required>
+
+            <br></br>
+            <label for="desc"><b>Description</b></label>
+            <input type="text" placeholder="Enter Description" name="desc" id="desc">
+
+            <label for="cat"><b>Category</b></label>
+            <input type="text" name="cat" list="cat">
+                <select id="cat">
+                    {% for value in income_categories %}
+                        <option value={{ value['category'] }}>
+                    {% endfor %}
+                </select>
+            </input>
+        <hr>
+
+        <button type="submit", style="font-size: 15px; padding: 10px;">Add...</button>
+    </div>
+  
+</form>
+</body>
+</html>

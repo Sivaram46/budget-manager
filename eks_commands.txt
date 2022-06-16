@@ -1,0 +1,39 @@
+configure aws cli using
+    aws configure
+
+terraform commands
+    
+    terraform init
+    terraform validate
+    terraform plan
+
+This will create all the clusters, vpc needed
+    terraform apply -auto-approve
+
+For switching the context
+
+    
+    aws eks --region us-east-1 update-kubeconfig --name budgetmanager
+    kubectl config use-context <output of above cmd>
+
+Kubectl commands
+
+    kubectl apply -f <mysql-deployment-file.yaml>
+    kubectl apply -f <app-deployment-file.yaml>
+
+    kubectl get svc (services)
+
+Paste the external_ip:port
+
+To access mysql database in eks
+
+    kubectl exec -it <pod-name> -- /bin/bash
+
+To delete the deployments
+
+    kubectl delete -f <mysql-deployment-file.yaml>
+    kubectl delete -f <app-deployment-file.yaml>
+
+To delete cluters, vpcs...
+    
+    terraform destroy -auto-approve

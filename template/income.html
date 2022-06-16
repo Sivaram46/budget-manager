@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 20px 20px;
+        font-size: 22px;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    .tile {
+        background-color: #4CAF50;
+        width: 200px;
+        height: 200px;
+        position:relative;
+    }
+
+    .my_button {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+    }
+</style>
+<head>
+    <link rel="stylesheet"
+        href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+    <div class="w3-container">
+        <h2 class="w3-text-green w3-xxlarge">
+           Incomes
+        </h2>
+    </div>
+
+    <div class="w3-container w3-center">
+        <table class="w3-table w3-striped w3-border" style="margin-bottom: 20px;">
+            <thead>
+                <tr class="w3-green">
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for value in result %}
+                <tr>
+                    <td> {{ value['income_date'] }} </td>
+                    <td> {{ value['income_amount'] }} </td>
+                    <td> {{ value['income_description'] }} </td>
+                    <td> {{ value['income_category'] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+        <form action="{{ url_for("add_income")}}" method="post">
+            <button class="button my_button">+</button>
+        </form>
+
+    </div>
+</body>
+</html>
+

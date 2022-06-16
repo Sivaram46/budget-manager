@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  labels:
+    app: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata: 
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+        image: tsivaram46/budgetmanager-upd
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        env:
+        - name: user
+          value: root
+        - name: password
+          value: root
+        - name: database
+          value: budget_manager
+        - name: host
+          value: mysql-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask
+spec:
+  selector:
+    app: flask
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+    nodePort: 30003

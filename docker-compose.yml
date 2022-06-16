@@ -1,0 +1,29 @@
+version: "2"
+services:
+    app:
+        build: .
+        image: tsivaram46/budgetmanager
+        links:
+        - db
+        ports:
+        - "5000:5000"
+        depends_on:
+            db:
+                condition: service_healthy
+    
+    db:
+        image: mysql:5.7
+        # container_name: dbcontainer
+        restart: always
+        ports:
+        - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: budget_manager
+        healthcheck:
+            test: "mysqladmin -u root -p$$MYSQL_ROOT_PASSWORD ping --protocol=tcp"
+            interval: 10s
+            timeout: 10s
+            retries: 10
+            start_period: 10s
+    

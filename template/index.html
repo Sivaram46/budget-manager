@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .center {
+        position: absolute;
+        bottom: 25%;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+    .center_div {
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    a {
+        display: block;
+    }
+</style>
+<head>
+    <link rel="stylesheet"
+        href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <div class="w3-container">
+        <h2 class="w3-text-green w3-xxlarge">
+           Budget Manager
+        </h2>
+    </div>
+
+    <div class="container center">
+        <a href="income">
+            <div style="background: #22c222; border-radius: 25px; margin-right: 25%; margin-left: 25%; margin-bottom: 20px; padding: 1px;">
+                <p>Total Income</p>
+                <p style="font-size: 30px;"><b>{{ total[0] }}</b></p>
+            </div>
+        </a>
+
+        <a href="expense">
+            <div style="background: #c23a22; border-radius: 25px; margin-right: 25%; margin-left: 25%; padding: 1px;">
+                <p>Total Expenditure</p>
+                <p style="font-size: 30px;"><b>{{ total[1] }}</b></p>
+            </div>
+        </a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+service: serverless-flask
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+
+custom:
+  wsgi:
+    app: app.app
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: false
+
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+    - .terraform/**
+    - .git/**
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: us-east-1
+  environment:
+    USER: admin
+    PASSWORD: 31032001
+    HOST: budget-manager.cluster-cvl5iadhn8ae.us-east-1.rds.amazonaws.com
+
+functions:
+  app:
+    handler: wsgi.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
